@@ -27,6 +27,14 @@ public class GitHubController {
         return ResponseEntity.ok(repositories);
     }
 
+
+    @GetMapping(value = "/user/{username}/non-fork-repositories", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Flux<GitHubRepository>> getUserRepositoriesName(@PathVariable String username) {
+        Flux<GitHubRepository> repositories = gitHubService.getNonForkRepositories(username);
+
+        return ResponseEntity.ok(repositories);
+    }
+
     @ExceptionHandler(GitHubUserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorResponser> handleGitHubUserNotFoundException(GitHubUserNotFoundException ex) {

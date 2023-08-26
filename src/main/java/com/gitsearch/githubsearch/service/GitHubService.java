@@ -1,6 +1,7 @@
 package com.gitsearch.githubsearch.service;
 
 import com.gitsearch.githubsearch.entity.GitHubRepository;
+import com.gitsearch.githubsearch.entity.GitHubSearchResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -16,9 +17,18 @@ public class GitHubService {
 
     public Flux<GitHubRepository> getNonForkRepositories(String username) {
         return webClient.get()
-                .uri("/users/{username}/repos?type=owner", username)
+                .uri("/users/{username}/repos", username)
                 .retrieve()
-                .bodyToFlux(GitHubRepository.class)
-                .filter(repo -> !repo.isFork());
+                .bodyToFlux(GitHubRepository.class);
+
+    }
+
+    public Flux<String> getUsernameRepositoriesNames(String username) {
+        return webClient.get()
+                .uri("/search/repositories?q=user{username}+fork:false",username)
+                .retrieve()
+                .bodyToMono(GitHubSearchResponse.class)
+                .flatMapMany(response -> Flux.fromIterable(response.getItems()))
+                .map(GitHubRepository::getRepoName);
     }
 }
