@@ -28,7 +28,6 @@ public class GitHubService {
         try {
             encodedUsername = URLEncoder.encode(username, StandardCharsets.UTF_8.toString());
         } catch (UnsupportedEncodingException e) {
-            // Handle encoding exception
             return Flux.error(e);
         }
 
@@ -42,7 +41,7 @@ public class GitHubService {
                     String encodedRepoName = repository.getRepoName();
 
                     return webClient.get()
-                            .uri("/repos/"+ encodedUsername+"/"+ encodedRepoName+"/branches")
+                            .uri("/repos/"+"/"+ encodedRepoName+"/branches")
                             .retrieve()
                             .bodyToFlux(Branch.class)
                             .flatMap(branch -> {
