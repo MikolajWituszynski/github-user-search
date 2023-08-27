@@ -9,12 +9,15 @@ public class Branch {
     @JsonProperty("sha")
     private String commitSHA;
 
+    @JsonProperty("commit")
+    private Commit commit;
+
     public String getName() {
         return name;
     }
 
-    public String getCommitSHA() {
-        return commitSHA;
+    public Commit getCommit() {
+        return commit;
     }
 
     public void setName(String name) {

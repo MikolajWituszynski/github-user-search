@@ -4,6 +4,9 @@ public class ErrorResponser {
     private int status;
     private String message;
 
+    public ErrorResponser() {
+    }
+
     public ErrorResponser(int status, String message) {
         this.status = status;
         this.message = message;
@@ -13,7 +16,15 @@ public class ErrorResponser {
         return status;
     }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public String getMessage() {
         return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

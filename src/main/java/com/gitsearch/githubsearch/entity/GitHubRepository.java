@@ -9,14 +9,22 @@ public class GitHubRepository {
 
     @JsonProperty("fork")
     private boolean isFork;
+    @JsonProperty("branches_url")
+    private String branchUrl;
 
     public String getRepoName() {
         return repoName;
     }
 
+    public String getBranchUrl() {
+        return branchUrl;
+    }
+
     public boolean isFork() {
         return isFork;
     }
+
+
 
     public void setRepoName(String repoName) {
         this.repoName = repoName;
