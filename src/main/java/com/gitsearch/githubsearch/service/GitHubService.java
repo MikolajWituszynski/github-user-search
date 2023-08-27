@@ -19,7 +19,7 @@ public class GitHubService {
 
     public GitHubService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("https://api.github.com")
-                .defaultHeader("Authorization", "Bearer " + "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")
+                .defaultHeader("Authorization", "Bearer " + System.getenv("GITHUB_ACCESS_TOKEN") )
                 .build();
     }
 
