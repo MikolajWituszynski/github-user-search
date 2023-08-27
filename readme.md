@@ -62,3 +62,19 @@ public class GitHubController {
         // Method implementation...
     }
 }
+
+
+To setup github access token as environment variable on windows:
+Windows:
+
+Open the Start menu and search for "Environment Variables" or "Edit the system environment variables".
+
+Click on "Edit the system environment variables" to open the System Properties window.
+
+In the System Properties window, click the "Environment Variables" button.
+
+In the Environment Variables window, under the "System variables" section, click the "New" button.
+
+Enter the name of the variable (e.g., GITHUB_ACCESS_TOKEN) and its value (your GitHub access token).
+
+Click "OK" to save the environment variable.
