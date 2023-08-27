@@ -1,8 +1,12 @@
 package com.gitsearch.githubsearch.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Branch {
 
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("sha")
     private String commitSHA;
 
     public String getName() {

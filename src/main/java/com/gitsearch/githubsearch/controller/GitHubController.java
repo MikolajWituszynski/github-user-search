@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.util.function.Tuple2;
+import reactor.util.function.Tuple3;
 
 @RestController
 @RequestMapping("/api")
@@ -21,17 +23,10 @@ public class GitHubController {
         this.gitHubService = gitHubService;
     }
 
-    @GetMapping(value = "/user/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Flux<GitHubRepository>> getUserRepositories(@PathVariable String username) {
-        Flux<GitHubRepository> repositories = gitHubService.getNonForkRepositories(username);
-        return ResponseEntity.ok(repositories);
-    }
-
 
     @GetMapping(value = "/user/{username}/non-fork-repositories", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Flux<GitHubRepository>> getUserRepositoriesName(@PathVariable String username) {
-        Flux<GitHubRepository> repositories = gitHubService.getNonForkRepositories(username);
-
+    public ResponseEntity<Flux<Tuple3<String, String,String>>> getUserRepositoriesName(@PathVariable String username) {
+        Flux<Tuple3<String, String,String>> repositories = gitHubService.getUsernameRepositoriesAndBranches(username);
         return ResponseEntity.ok(repositories);
     }
 
