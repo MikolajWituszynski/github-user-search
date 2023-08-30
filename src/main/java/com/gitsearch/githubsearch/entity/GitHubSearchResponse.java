@@ -1,7 +1,6 @@
 package com.gitsearch.githubsearch.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gitsearch.githubsearch.entity.GitHubRepository;
 
 import java.util.List;
 
